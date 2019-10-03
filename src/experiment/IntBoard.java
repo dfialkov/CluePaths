@@ -14,16 +14,27 @@ public class IntBoard {
 		//TODO: implement
 
 	}
+	
 	public Map<BoardCell, Set<BoardCell>> calcAdjacencies(int row, int col) {
 		//TODO: implement
 		return null;
 	}
-	public void calcTargets(int startCell, int pathLength) {
+	
+	public void calcTargets(BoardCell startCell, int pathLength) {
 		//TODO: implement
 	}
 
 	public Set<BoardCell> getTargets(){
 		//TODO: implement
+		return null;
+	}
+	
+	public Set<BoardCell> getAdjList(BoardCell cell) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public BoardCell getCell(int toRow, int toCol) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
