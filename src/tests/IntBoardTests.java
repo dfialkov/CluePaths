@@ -69,6 +69,7 @@ public class IntBoardTests {
 		assertTrue(testList.contains(board.getCell(2, 1)));
 		assertEquals(4, testList.size());
 	}
+	//testpush
 	@Test
 	public void testAdjacency22()
 	{
