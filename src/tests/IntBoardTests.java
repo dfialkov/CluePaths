@@ -23,6 +23,7 @@ public class IntBoardTests {
 	@Test
 	public void testAdjacency00()
 	{
+		//All adjacency tests are structured as follows:
 		//get cell
 		BoardCell cell = board.getCell(0,0);
 		//calculate adjacents
@@ -68,12 +69,10 @@ public class IntBoardTests {
 
 		BoardCell cell = board.getCell(1,1);
 		Set<BoardCell> testList = board.getAdjList(cell);
-		//test for positive results
 		assertTrue(testList.contains(board.getCell(1, 0)));
 		assertTrue(testList.contains(board.getCell(0, 1)));
 		assertTrue(testList.contains(board.getCell(1, 2)));
 		assertTrue(testList.contains(board.getCell(2, 1)));
-		//test for no extra results
 		assertEquals(4, testList.size());
 	}
 	//testpush
@@ -91,6 +90,7 @@ public class IntBoardTests {
 	@Test
 	public void testTargets00_1()
 	{
+		//All target tests are structured as follows:
 		//get cell
 		BoardCell cell = board.getCell(0, 0);
 		//calculate results

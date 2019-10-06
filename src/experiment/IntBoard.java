@@ -13,18 +13,21 @@ public class IntBoard {
 
 
 	public IntBoard() {
+		//create board, populate grid
 		grid = new BoardCell[4][4];
 		for(int i = 0;i < 4;i++) {
 			for(int j = 0;j<4;j++) {
 				grid[i][j] = new BoardCell(i, j);
 			}
 		}
+		//prepare one-time adj map
 		this.calcAdjacencies();
 	}
 
 
 	public void calcAdjacencies() {
 		adjMap = new HashMap();
+		//Code to populate adj map, checks for valid coordinates before adding cell.
 		for(int row = 0;row<4;row++) {
 			for(int col = 0;col<4;col++) {
 				Set<BoardCell> adjCells = new HashSet();
@@ -46,12 +49,14 @@ public class IntBoard {
 	}
 
 	public void calcTargets(BoardCell startCell, int pathLength) {
+		//set up for recursive call
 		visited = new HashSet();
 		targets = new HashSet();
 		visited.add(startCell);
 		findAllTargets(startCell, pathLength);
 		
 	}
+	//recursive pathfinding algorithm
 	public void findAllTargets(BoardCell startCell, int pathLength) {
 		int numSteps = pathLength;
 		for(BoardCell adjCell : adjMap.get(startCell)) {
@@ -69,7 +74,7 @@ public class IntBoard {
 			
 		}
 	}
-
+	//Some getters
 	public Set<BoardCell> getTargets(){
 		return targets;
 	}

@@ -1,0 +1,41 @@
+commit 7cb44c7e92970cc90d812ece04b4f283a4c02477
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Sun Oct 6 15:13:51 2019 -0600
+
+    Implemented adj calcs, path calcs
+
+commit 2fdcd576a4c369698b6500816d3c57fe0ce93071
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Sun Oct 6 09:35:12 2019 -0600
+
+    Finalized tests. Turn this branch in for p1
+
+commit 0a28fae62edb2168ed33dbd82d22a862e075666c
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Sun Oct 6 09:17:49 2019 -0600
+
+    Finished implementing tests
+
+commit d7eafe0fe905eac83fdbcbc04c9cab6100ae65f7
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Sat Oct 5 15:03:08 2019 -0600
+
+    No meaningful changes
+
+commit 2058fe9e8c00307e40c62f6a6c43dfe2a3702bf8
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Thu Oct 3 12:12:44 2019 -0600
+
+    Implemented failing tests
+
+commit fa44660bc5fb5e05cfab9ac755088b199fe1fd36
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Thu Oct 3 11:57:18 2019 -0600
+
+    Implemented stub methods
+
+commit eaa7ffe6f8ba4e38e043ab0ac7124bfdc26a0770
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Tue Oct 1 12:21:47 2019 -0600
+
+    initial commit
