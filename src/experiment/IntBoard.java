@@ -1,41 +1,84 @@
 package experiment;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 public class IntBoard {
-	private Map<BoardCell, Set<BoardCell>> adjMtx;
+	private Map<BoardCell, Set<BoardCell>> adjMap;
 	private Set<BoardCell> visited;
 	private Set<BoardCell> targets;
 	private BoardCell[][] grid;
 
 
 	public IntBoard() {
-		//TODO: implement
+		grid = new BoardCell[4][4];
+		for(int i = 0;i < 4;i++) {
+			for(int j = 0;j<4;j++) {
+				grid[i][j] = new BoardCell(i, j);
+			}
+		}
+		this.calcAdjacencies();
+	}
 
+
+	public void calcAdjacencies() {
+		adjMap = new HashMap();
+		for(int row = 0;row<4;row++) {
+			for(int col = 0;col<4;col++) {
+				Set<BoardCell> adjCells = new HashSet();
+				if(col - 1 >= 0 && col - 1 <= 3) {
+					adjCells.add(grid[row][col - 1]);
+				}
+				if(col + 1 >= 0 && col + 1 <= 3) {
+					adjCells.add(grid[row][col + 1]);
+				}
+				if(row - 1 >= 0 && row - 1 <= 3) {
+					adjCells.add(grid[row - 1][col]);
+				}
+				if(row + 1 >= 0 && row + 1 <= 3) {
+					adjCells.add(grid[row + 1][col]);
+				}
+				adjMap.put(grid[row][col], adjCells);
+			}
+		}
 	}
-	
-	public Map<BoardCell, Set<BoardCell>> calcAdjacencies(int row, int col) {
-		//TODO: implement
-		return null;
-	}
-	
+
 	public void calcTargets(BoardCell startCell, int pathLength) {
-		//TODO: implement
+		visited = new HashSet();
+		targets = new HashSet();
+		visited.add(startCell);
+		findAllTargets(startCell, pathLength);
+		
+	}
+	public void findAllTargets(BoardCell startCell, int pathLength) {
+		int numSteps = pathLength;
+		for(BoardCell adjCell : adjMap.get(startCell)) {
+			if(visited.contains(adjCell)) {
+				continue;
+			}
+			visited.add(adjCell);
+			if(numSteps == 1) {
+				targets.add(adjCell);
+			}
+			else {
+				findAllTargets(adjCell, numSteps - 1);
+			}
+			visited.remove(adjCell);
+			
+		}
 	}
 
 	public Set<BoardCell> getTargets(){
-		//TODO: implement
-		return null;
+		return targets;
 	}
-	
+
 	public Set<BoardCell> getAdjList(BoardCell cell) {
-		// TODO Auto-generated method stub
-		return null;
+		return adjMap.get(cell);
 	}
 	public BoardCell getCell(int toRow, int toCol) {
-		// TODO Auto-generated method stub
-		return null;
+		return grid[toRow][toCol];
 	}
 
 }
