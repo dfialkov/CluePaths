@@ -1,3 +1,9 @@
+commit 3c14b77fb01a0e688e3d7b7a4952599c306c997f
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Sun Oct 6 15:23:46 2019 -0600
+
+    Documented code. Finalized project. Final commit.
+
 commit 7cb44c7e92970cc90d812ece04b4f283a4c02477
 Author: dfialkov <dfialkov@mymail.mines.edu>
 Date:   Sun Oct 6 15:13:51 2019 -0600
