@@ -80,7 +80,7 @@ public class p1BoardTests {
 		room = board.getCellAt(14, 14);
 		assertFalse(room.isDoorway());	
 		// Test that walkways are not doors
-		BoardCell cell = board.getCellAt(0, 6);
+		BoardCell cell = board.getCellAt(0, 5);
 		assertFalse(cell.isDoorway());		
 
 	}
