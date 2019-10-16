@@ -2,6 +2,7 @@ The legend size, column count, and row count tests could all be used without mod
 The lounge has an initial of L in the legend, so we're testing for that, and applying the same pattern to all of the other room/letter tests
 The Wine Cellar has a door that opens right at (0,3), so we're testing for a door going right there. We're testing the rooms that have doors in the other three directions in a similar way
 The walkway, however, has no doors, so it shouldn't register as having a door. 
+At this point, we also test to make sure that the rooms aren't being recognized as walkways. 
 The whole board has 10 doors, so we're going through every cell and incrementing a counter whenever we encounter a door. This should result in 10 total doors being counted.
 The wine cellar has an initial of C, so selecting the first cell of the room(0,0) should say that the cell's initial is C, since (0,0) is in the wine cellar. All other first cell tests are conducted with the same logic.
 Likewise, the last cell of the wine cellar is(4,3), so it should register as having the initial W too. All other last cell tests are conducted with the same logic.

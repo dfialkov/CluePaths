@@ -61,22 +61,27 @@ public class CTest_FileInitTests {
 	
 	// Test a doorway in each direction (RIGHT/LEFT/UP/DOWN), plus 
 	// two cells that are not a doorway.
-	// These cells are white on the planning spreadsheet
+	
+	// Make sure the simulation is only recognizing walkways where they actually are
 	@Test
 	public void FourDoorDirections() {
 		BoardCell room = board.getCellAt(4, 3);
 		assertTrue(room.isDoorway());
+		assertFalse(room.isWalkway());
 		assertEquals(DoorDirection.RIGHT, room.getDoorDirection());
 		room = board.getCellAt(4, 8);
 		assertTrue(room.isDoorway());
+		assertFalse(room.isWalkway());
 		assertEquals(DoorDirection.DOWN, room.getDoorDirection());
 		room = board.getCellAt(15, 18);
 		assertTrue(room.isDoorway());
+		assertFalse(room.isWalkway());
 		assertEquals(DoorDirection.LEFT, room.getDoorDirection());
 		room = board.getCellAt(14, 11);
 		assertTrue(room.isDoorway());
+		assertFalse(room.isWalkway());
 		assertEquals(DoorDirection.UP, room.getDoorDirection());
-		// Test that room pieces that aren't doors know it
+		// Test that room pieces that aren't doors
 		room = board.getCellAt(14, 14);
 		assertFalse(room.isDoorway());	
 		// Test that walkways are not doors

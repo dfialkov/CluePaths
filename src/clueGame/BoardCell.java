@@ -9,7 +9,10 @@ public class BoardCell {
 		row = newRow;
 		col = newCol;
 	}
-	
+
+	public boolean isWalkway() {
+		return false;
+	}
 	public int getRow() {
 		return row;
 	}
