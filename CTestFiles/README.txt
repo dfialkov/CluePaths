@@ -1,3 +1,6 @@
+Darian Dickerson
+Daniel Fialkov
+
 B, Bedroom, Card
 C, Wine Cellar, Card
 D, Dinning Room, Card

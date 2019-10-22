@@ -1,4 +1,4 @@
-
+package clueGame;
 
 public class main {
 

@@ -5,14 +5,21 @@ package clueGame;
 public class BoardCell {
 	private int row;
 	private int col;
-	public BoardCell(int newRow, int newCol) {
+	private String initial;
+	
+	public BoardCell(int newRow, int newCol, String newInitial) {
 		row = newRow;
 		col = newCol;
+		initial = newInitial;
 	}
 
 	public boolean isWalkway() {
+		if(initial.charAt(0) == 'W') {
+			return true;
+		}
 		return false;
 	}
+	
 	public int getRow() {
 		return row;
 	}
@@ -22,17 +29,42 @@ public class BoardCell {
 	}
 
 	public boolean isDoorway() {
-		// TODO Auto-generated method stub
+		if(initial.length() == 2 && initial.charAt(1) != 'N') {
+			return true;
+		}
 		return false;
 	}
 
 	public DoorDirection getDoorDirection() {
-		// TODO Auto-generated method stub
-		return null;
+		DoorDirection direction = DoorDirection.NONE;
+		if(initial.length() < 2) {
+			return direction;
+		}
+		
+		char dir = initial.charAt(1);
+		
+		switch(dir) {
+			case 'R':
+				direction = DoorDirection.RIGHT;
+				break;
+			case 'L':
+				direction = DoorDirection.LEFT;
+				break;
+			case 'U':
+				direction = DoorDirection.UP;
+				break;
+			case 'D':
+				direction = DoorDirection.DOWN;
+				break;
+			default:
+				break;
+		}
+		
+		return direction;
 	}
-
-	public Object getInitial() {
-		// TODO Auto-generated method stub
-		return null;
+;
+	public char getInitial() {
+		char room = initial.charAt(0);
+		return room;
 	}
 }

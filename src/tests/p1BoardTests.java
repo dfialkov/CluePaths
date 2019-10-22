@@ -8,12 +8,14 @@ package tests;
 // Assert.assertEquals
 import static org.junit.Assert.*;
 
+import java.io.FileNotFoundException;
 import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import clueGame.BadConfigFormatException;
 import clueGame.Board;
 import clueGame.BoardCell;
 import clueGame.DoorDirection;
@@ -29,11 +31,11 @@ public class p1BoardTests {
 	private static Board board;
 	
 	@BeforeClass
-	public static void setUp() {
+	public static void setUp() throws FileNotFoundException, BadConfigFormatException {
 		// Board is singleton, get the only instance
 		board = Board.getInstance();
 		// set the file names to use my config files
-		board.setConfigFiles("ourBoard.csv", "ourBoardLegent.csv");		
+		board.setConfigFiles("ourBoard.csv", "ourBoardLegend.txt");		
 		// Initialize will load BOTH config files 
 		board.initialize();
 	}
@@ -105,7 +107,7 @@ public class p1BoardTests {
 		// Test first cell in room
 		assertEquals('C', board.getCellAt(0, 0).getInitial());
 		assertEquals('Y', board.getCellAt(7, 0).getInitial());
-		assertEquals('B', board.getCellAt(15, 0).getInitial());
+		assertEquals('M', board.getCellAt(15, 0).getInitial());
 		// Test last cell in room
 		assertEquals('C', board.getCellAt(4, 3).getInitial());
 		assertEquals('O', board.getCellAt(11, 16).getInitial());
