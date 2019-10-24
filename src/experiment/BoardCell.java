@@ -1,3 +1,4 @@
+//Authors: Daniel Fialkov and Darian Dickerson
 package experiment;
 
 public class BoardCell {
