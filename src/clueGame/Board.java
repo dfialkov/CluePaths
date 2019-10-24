@@ -1,3 +1,7 @@
+//Authors:
+//Daniel Fialkov
+//Darian Dickerson
+
 package clueGame;
 
 import java.io.FileNotFoundException;
