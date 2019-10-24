@@ -45,3 +45,123 @@ Author: dfialkov <dfialkov@mymail.mines.edu>
 Date:   Tue Oct 1 12:21:47 2019 -0600
 
     initial commit
+commit d71c07b4bbc9b8cd59fc7a497479e7a98fedcc8f
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Wed Oct 23 20:10:26 2019 -0600
+
+    Saved some unsaved files. Might be important
+
+commit 6d7f7383569d75701e0b94b6b0acdc503b11033d
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Wed Oct 23 20:08:20 2019 -0600
+
+    Added docs and signed names
+
+commit d721fc371218fa63fc207ef366296ae442a9b869
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Wed Oct 23 20:07:55 2019 -0600
+
+    Documentation, added our names
+
+commit d44f3ce78116064ab9b5e2b4656f21b4f2c6b0e5
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Wed Oct 23 19:41:45 2019 -0600
+
+    Resolved more merge conflicts that I missed
+
+commit 7a1ba51824731f7c841cac154cc706ae7da1e177
+Merge: 2d41617 6f2fe63
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Wed Oct 23 19:39:54 2019 -0600
+
+    Resolved merge conflicts with updates
+
+commit 2d41617287e0c88b3ebc90f0f5a40bc4f1cab107
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Wed Oct 23 19:37:59 2019 -0600
+
+    Completed code. Prof's tests pass.
+
+commit 202a4990502c6b189231f18623e996379514c737
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Wed Oct 23 19:34:08 2019 -0600
+
+    Completed code changes. Prof's tests pass.
+
+commit 6f2fe63f8d671755732c1ef7ab182d51c0eb0fde
+Author: Darian Dickerson <ddickers@mymail.mines.edu>
+Date:   Wed Oct 23 18:42:36 2019 -0600
+
+    part III Adjacency/Target Tests
+
+commit 695cc1c37e1b89bfdbe8a1dc7bab044d549ed686
+Author: Darian Dickerson <ddickers@mymail.mines.edu>
+Date:   Tue Oct 22 02:41:16 2019 -0600
+
+    part II tests
+
+commit 16a9bf6f4a2460a0cbc90cae94a8a91dbd8ba429
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Tue Oct 15 20:56:26 2019 -0600
+
+    Finished missing bits. Final commit for P1
+
+commit c77c40cc750a315751c9430d3b7c9f2221c082ca
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Tue Oct 15 20:21:24 2019 -0600
+
+    Completed OurTests.txt
+
+commit b0c7936ecbf3d3bc1917a6b111159d2ba0252729
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Tue Oct 15 19:51:40 2019 -0600
+
+    Implemented failing tests, method stubs
+
+commit 3c14b77fb01a0e688e3d7b7a4952599c306c997f
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Sun Oct 6 15:23:46 2019 -0600
+
+    Documented code. Finalized project. Final commit.
+
+commit 7cb44c7e92970cc90d812ece04b4f283a4c02477
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Sun Oct 6 15:13:51 2019 -0600
+
+    Implemented adj calcs, path calcs
+
+commit 2fdcd576a4c369698b6500816d3c57fe0ce93071
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Sun Oct 6 09:35:12 2019 -0600
+
+    Finalized tests. Turn this branch in for p1
+
+commit 0a28fae62edb2168ed33dbd82d22a862e075666c
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Sun Oct 6 09:17:49 2019 -0600
+
+    Finished implementing tests
+
+commit d7eafe0fe905eac83fdbcbc04c9cab6100ae65f7
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Sat Oct 5 15:03:08 2019 -0600
+
+    No meaningful changes
+
+commit 2058fe9e8c00307e40c62f6a6c43dfe2a3702bf8
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Thu Oct 3 12:12:44 2019 -0600
+
+    Implemented failing tests
+
+commit fa44660bc5fb5e05cfab9ac755088b199fe1fd36
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Thu Oct 3 11:57:18 2019 -0600
+
+    Implemented stub methods
+
+commit eaa7ffe6f8ba4e38e043ab0ac7124bfdc26a0770
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Tue Oct 1 12:21:47 2019 -0600
+
+    initial commit
