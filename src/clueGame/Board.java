@@ -7,9 +7,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.Queue;
+
 
 
 
@@ -24,6 +27,7 @@ public class Board {
 	private Set<BoardCell> targets;
 	private String boardConfigFile;
 	private String roomConfigFile;
+	private HashSet visited;
 
 	// variable used for singleton pattern
 	private static Board theInstance = new Board();
@@ -43,6 +47,7 @@ public class Board {
 	public void initialize() throws FileNotFoundException, BadConfigFormatException {
 		loadRoomConfig();
 		loadBoardConfig();
+		calcAdjacencies();
 	}
 	
 	//Load in the room file
@@ -138,13 +143,128 @@ public class Board {
 	
 	//Implemented in IntBoard. Take a look at C12A2 for more info
 	public void calcAdjacencies() {
+		adjMatrix = new HashMap();
+		//Code to populate adj map, checks for valid coordinates before adding cell.
+		for(int row = 0;row<getNumRows();row++) {
+			for(int col = 0;col<getNumColumns();col++) {
+				Set<BoardCell> adjCells = new HashSet();
+				BoardCell testCell = getCellAt(row, col);
+				//Ignore the closet and room internals
+				if(testCell.getInitial() != 'W' && testCell.getDoorDirection() == DoorDirection.NONE) {
+					
+				}
+				//Handle door cells within rooms
+				else if(testCell.getInitial() != 'W' && testCell.getDoorDirection() != DoorDirection.NONE) {
+					switch(testCell.getDoorDirection()) {
+					case UP: 
+						adjCells.add(board[row-1][col]);
+						break;
+					case DOWN:
+						adjCells.add(board[row+1][col]);
+						break;
+					case RIGHT:
+						adjCells.add(board[row][col+1]);
+						break;
+					case LEFT:
+						adjCells.add(board[row][col-1]);
+						break;
+					}
+				}
+				//Handle walkways
+				else {
+					//Get every possible adjacency into a queue for more compact code
+					Queue adjQueue = new LinkedList();
+					//Simple bounds check
+					if(row - 1 >= 0 && row - 1 < numRows  ) {
+						adjQueue.add(board[row-1][col]);
+					}
+					if(row + 1 >= 0 && row + 1 < numRows  ) {
+						adjQueue.add(board[row+1][col]);
+					}
+					if(col - 1 >= 0  && col - 1 < numColumns) {
+						adjQueue.add(board[row][col-1]);
+					}
+					if(col + 1 >= 0  && col + 1 < numColumns) {
+						adjQueue.add(board[row][col+1]);
+					}
+					//For every valid adj cell:
+					while(!adjQueue.isEmpty()){
+						BoardCell currCell = (BoardCell) adjQueue.element();
+						adjQueue.remove();
+						//if the adj cell is a doorless room, ignore the cell
+						if(currCell.getInitial() != 'W' && currCell.getDoorDirection() == DoorDirection.NONE) {
+							
+						}
+						//If the adj cell is a walkway, add it
+						else if(currCell.getInitial() == 'W') {
+							adjCells.add(currCell);
+						}
+						//If the adj cell is a door, check testCell's relative position and add it if the door direction is correct
+						else if(currCell.getInitial() != 'W' && currCell.isDoorway()) {
+							
+							if(currCell.getDoorDirection() == DoorDirection.UP) {
+								if(currCell.getRow() == testCell.getRow() +1 ) {
+									adjCells.add(currCell);
+								}}
+								else if(currCell.getDoorDirection() == DoorDirection.DOWN) {
+									if(currCell.getRow() == testCell.getRow() - 1) {
+										adjCells.add(currCell);
+									}
+								}
+								else if(currCell.getDoorDirection() == DoorDirection.RIGHT) {
+									if(currCell.getCol() == testCell.getCol() - 1) {
+										adjCells.add(currCell);
+									}
+								}
+								else if(currCell.getDoorDirection() == DoorDirection.LEFT) {
+									if(currCell.getCol() == testCell.getCol() + 1) {
+										adjCells.add(currCell);
+									}
+								}
+							}
+						}
+					}
+				
+				adjMatrix.put(testCell, adjCells);
+			}
+		}
 		
 	}
 	
-	//Implemented in IntBoard. Take a look at C12A2 for for more info
-	public void calcTargets(BoardCell cell, int pathLength) {
+	
+	public void calcTargets(int row, int col, int pathLength) {
+		//set up for recursive call
+				visited = new HashSet();
+				targets = new HashSet();
+				visited.add(board[row][col]);
+				BoardCell startCell = board[row][col];
+				findAllTargets(startCell, pathLength);
 		
 	}
+	//recursive pathfinding algorithm
+	//Do not modify without running all test cases to make sure you didn't break anything. 
+	public void findAllTargets(BoardCell startCell, int pathLength) {
+		int numSteps = pathLength;
+		for(BoardCell adjCell : adjMatrix.get(startCell)) {
+			
+			if(visited.contains(adjCell)) {
+				continue;
+			}
+			if(adjCell.isDoorway() && !targets.contains(adjCell)) {
+				targets.add(adjCell);
+			}
+			visited.add(adjCell);
+			if(numSteps == 1) {
+				targets.add(adjCell);
+			}
+			else {
+				findAllTargets(adjCell, numSteps - 1);
+			}
+			visited.remove(adjCell);
+			
+		}
+	}
+	
 	
 	//Getters. Self-explanatory
 	public BoardCell getCellAt(int row, int col) {
@@ -167,4 +287,15 @@ public class Board {
 	public Map<Character, String> getLegend() {
 		return legend;
 	}
+
+	public Set<BoardCell> getAdjList(int i, int j) {
+		return adjMatrix.get(board[i][j]);
+	}
+
+	public Set<BoardCell> getTargets() {
+		return targets;
+	}
+	
+
+	
 }
