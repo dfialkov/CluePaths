@@ -62,7 +62,7 @@ public class BoardCell {
 		
 		return direction;
 	}
-;
+
 	public char getInitial() {
 		char room = initial.charAt(0);
 		return room;

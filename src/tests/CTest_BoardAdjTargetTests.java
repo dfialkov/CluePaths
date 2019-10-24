@@ -22,12 +22,20 @@ public class CTest_BoardAdjTargetTests {
 	// We make the Board static because we can load it one time and 
 	// then do all the tests. 
 	private static Board board;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6f2fe63f8d671755732c1ef7ab182d51c0eb0fde
 	@BeforeClass
 	public static void setUp() throws FileNotFoundException, BadConfigFormatException {
 		// Board is singleton, get the only instance
 		board = Board.getInstance();
 		// set the file names to use my config files
+<<<<<<< HEAD
 		board.setConfigFiles("./CTestFiles/CTest_ClueLayout.csv", "./CTestFiles/CTest_ClueLegend.txt");		
+=======
+		board.setConfigFiles("CTest_ClueLayout.csv", "CTest_ClueLegend.txt");		
+>>>>>>> 6f2fe63f8d671755732c1ef7ab182d51c0eb0fde
 		// Initialize will load BOTH config files 
 		board.initialize();
 	}
@@ -253,7 +261,10 @@ public class CTest_BoardAdjTargetTests {
 	
 	// Test getting into a room
 	// These are LIGHT BLUE on the planning spreadsheet
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6f2fe63f8d671755732c1ef7ab182d51c0eb0fde
 	@Test 
 	public void testTargetsIntoRoom()
 	{
@@ -280,8 +291,12 @@ public class CTest_BoardAdjTargetTests {
 	{
 		board.calcTargets(12, 7, 3);
 		Set<BoardCell> targets= board.getTargets();
+<<<<<<< HEAD
 		
 //		assertEquals(12, targets.size());
+=======
+		assertEquals(12, targets.size());
+>>>>>>> 6f2fe63f8d671755732c1ef7ab182d51c0eb0fde
 		// directly up and down
 		assertTrue(targets.contains(board.getCellAt(15, 7)));
 		assertTrue(targets.contains(board.getCellAt(9, 7)));
@@ -318,7 +333,10 @@ public class CTest_BoardAdjTargetTests {
 		// Take two steps
 		board.calcTargets(4, 20, 2);
 		targets= board.getTargets();
+<<<<<<< HEAD
 		System.out.println(targets.size());
+=======
+>>>>>>> 6f2fe63f8d671755732c1ef7ab182d51c0eb0fde
 		assertEquals(3, targets.size());
 		assertTrue(targets.contains(board.getCellAt(3, 19)));
 		assertTrue(targets.contains(board.getCellAt(5, 19)));
