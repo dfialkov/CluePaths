@@ -1,3 +1,4 @@
+//Authors: Daniel Fialkov and Darian Dickerson
 package tests;
 
 import static org.junit.Assert.*;
@@ -29,7 +30,7 @@ public class AdjTargetTests {
 		// Board is singleton, get the only instance
 		board = Board.getInstance();
 		// set the file names to use my config files
-		board.setConfigFiles("ourBoard.csv", "ourBoardLegend.txt");		
+		board.setConfigFiles("./CTestFiles/ourBoard.csv", "./CTestFiles/ourBoardLegend.txt");		
 		// Initialize will load BOTH config files 
 		board.initialize();
 	}
@@ -191,6 +192,7 @@ public class AdjTargetTests {
 		//Three Steps
 		board.calcTargets(18, 4, 3);
 		Set<BoardCell> targets= board.getTargets();
+		System.out.println(targets.size());
 		assertEquals(4, targets.size());
 		//2 Steps into room
 		assertTrue(targets.contains(board.getCellAt(18, 2)));
