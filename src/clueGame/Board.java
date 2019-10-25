@@ -101,16 +101,16 @@ public class Board {
 			board = new BoardCell[numRows][numColumns];
 
 			//Populate Board
-			boardReader1 = new FileReader(boardConfigFile);
-			Scanner boardScan1 = new Scanner(boardReader1);
+			boardReader = new FileReader(boardConfigFile);
+			boardScan = new Scanner(boardReader);
 
 			int row = 0;
-			while(boardScan1.hasNextLine()) {
-				String[] array1= boardScan1.nextLine().split(",");
+			while(boardScan.hasNextLine()) {
+				String[] array1= boardScan.nextLine().split(",");
 
 				// Test Same # of Columns in each Row
-				int temp = array1.length;
-				if(temp != numColumns) {
+				int actualColCount = array1.length;
+				if(actualColCount != numColumns) {
 					throw new BadConfigFormatException("Invalid Board Configuration: Number of columns vary");
 				}
 
