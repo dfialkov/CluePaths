@@ -189,12 +189,9 @@ public class Board {
 					while(!adjQueue.isEmpty()){
 						BoardCell currCell = (BoardCell) adjQueue.element();
 						adjQueue.remove();
-						//if the adj cell is a doorless room, ignore the cell
-						if(currCell.getInitial() != 'W' && currCell.getDoorDirection() == DoorDirection.NONE) {
-							
-						}
+						
 						//If the adj cell is a walkway, add it
-						else if(currCell.getInitial() == 'W') {
+						if(currCell.getInitial() == 'W') {
 							adjCells.add(currCell);
 						}
 						//If the adj cell is a door, check testCell's relative position and add it if the door direction is correct
