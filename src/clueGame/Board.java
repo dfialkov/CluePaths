@@ -60,7 +60,7 @@ public class Board {
 			Scanner roomScan = new Scanner(roomReader);
 
 			while(roomScan.hasNextLine()) {
-				String array1[]= roomScan.nextLine().split(",");
+				String[] array1= roomScan.nextLine().split(",");
 				legend.put(array1[0].charAt(0),array1[1].substring(1));
 
 				//Invalid Room Type
@@ -91,7 +91,7 @@ public class Board {
 			//find numColumns numRows
 			numRows = 0;
 			while(boardScan.hasNextLine()) {
-				String array[]= boardScan.nextLine().split(",");
+				String[] array= boardScan.nextLine().split(",");
 				numColumns = array.length;
 				numRows++;
 			}
@@ -106,7 +106,7 @@ public class Board {
 
 			int row = 0;
 			while(boardScan1.hasNextLine()) {
-				String array1[]= boardScan1.nextLine().split(",");
+				String[] array1= boardScan1.nextLine().split(",");
 
 				// Test Same # of Columns in each Row
 				int temp = array1.length;
