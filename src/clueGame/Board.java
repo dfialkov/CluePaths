@@ -45,7 +45,7 @@ public class Board {
 		return theInstance;
 	}
 
-	public void initialize() throws FileNotFoundException, BadConfigFormatException {
+	public void initialize() throws  BadConfigFormatException {
 		loadRoomConfig();
 		loadBoardConfig();
 		calcAdjacencies();
@@ -82,7 +82,6 @@ public class Board {
 	//Load in the board legend file
 	public void loadBoardConfig() throws BadConfigFormatException {
 		FileReader boardReader;
-		FileReader boardReader1;
 
 		try {
 			boardReader = new FileReader(boardConfigFile);
@@ -166,7 +165,12 @@ public class Board {
 					case LEFT:
 						adjCells.add(board[row][col-1]);
 						break;
+					case NONE: 
+						break;
+					default:
+						break;
 					}
+					
 				}
 				//Handle walkways
 				else if(testCell.getInitial() == 'W') {
