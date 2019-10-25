@@ -106,25 +106,25 @@ public class Board {
 
 			int row = 0;
 			while(boardScan.hasNextLine()) {
-				String[] array1= boardScan.nextLine().split(",");
+				String[] rowContents= boardScan.nextLine().split(",");
 
 				// Test Same # of Columns in each Row
-				int actualColCount = array1.length;
+				int actualColCount = rowContents.length;
 				if(actualColCount != numColumns) {
 					throw new BadConfigFormatException("Invalid Board Configuration: Number of columns vary");
 				}
 
 				for(int i = 0; i < numColumns; i++) {
 					// Create BoardCell
-					if (array1[i].charAt(0) > 172){
+					if (rowContents[i].charAt(0) > 172){
 
 						board[row][i] = new BoardCell(row, i, "C");
 
 					}else {	
-						board[row][i] = new BoardCell(row, i, array1[i]);
+						board[row][i] = new BoardCell(row, i, rowContents[i]);
 
 						// Room not in Legend
-						if(!legend.containsKey(array1[i].charAt(0))) {
+						if(!legend.containsKey(rowContents[i].charAt(0))) {
 							throw new BadConfigFormatException("Invalid Board Configuration: Room not in Legend");
 						}
 					}
