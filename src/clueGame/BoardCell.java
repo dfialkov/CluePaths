@@ -15,10 +15,8 @@ public class BoardCell {
 	}
 
 	public boolean isWalkway() {
-		if(initial.charAt(0) == 'W') {
-			return true;
-		}
-		return false;
+			return initial.charAt(0) == 'W';
+
 	}
 	
 	public int getRow() {
@@ -65,7 +63,6 @@ public class BoardCell {
 	}
 
 	public char getInitial() {
-		char room = initial.charAt(0);
-		return room;
+		return initial.charAt(0);
 	}
 }
