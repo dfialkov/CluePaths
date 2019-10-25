@@ -131,9 +131,7 @@ public class Board {
 				row++;
 			}
 
-
-			if(boardScan!=null)
-				boardScan.close();
+			boardScan.close();
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
