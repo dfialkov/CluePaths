@@ -197,24 +197,24 @@ public class Board {
 						//If the adj cell is a door, check testCell's relative position and add it if the door direction is correct
 						else if(currCell.getInitial() != 'W' && currCell.isDoorway()) {
 							
-							if(currCell.getDoorDirection() == DoorDirection.UP) {
-								if(currCell.getRow() == testCell.getRow() +1 ) {
+							if(currCell.getDoorDirection() == DoorDirection.UP && currCell.getRow() == testCell.getRow() +1 ) {
+								
 									adjCells.add(currCell);
-								}}
-								else if(currCell.getDoorDirection() == DoorDirection.DOWN) {
-									if(currCell.getRow() == testCell.getRow() - 1) {
-										adjCells.add(currCell);
-									}
 								}
-								else if(currCell.getDoorDirection() == DoorDirection.RIGHT) {
-									if(currCell.getCol() == testCell.getCol() - 1) {
+								else if(currCell.getDoorDirection() == DoorDirection.DOWN && currCell.getRow() == testCell.getRow() - 1) {
+									
 										adjCells.add(currCell);
-									}
+									
 								}
-								else if(currCell.getDoorDirection() == DoorDirection.LEFT) {
-									if(currCell.getCol() == testCell.getCol() + 1) {
+								else if(currCell.getDoorDirection() == DoorDirection.RIGHT && currCell.getCol() == testCell.getCol() - 1) {
+									
 										adjCells.add(currCell);
-									}
+									
+								}
+								else if(currCell.getDoorDirection() == DoorDirection.LEFT && currCell.getCol() == testCell.getCol() + 1) {
+									
+										adjCells.add(currCell);
+									
 								}
 							}
 						}
