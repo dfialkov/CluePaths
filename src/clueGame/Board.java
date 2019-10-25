@@ -6,7 +6,6 @@ package clueGame;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -151,12 +150,9 @@ public class Board {
 			for(int col = 0;col<getNumColumns();col++) {
 				Set<BoardCell> adjCells = new HashSet();
 				BoardCell testCell = getCellAt(row, col);
-				//Ignore the closet and room internals
-				if(testCell.getInitial() != 'W' && testCell.getDoorDirection() == DoorDirection.NONE) {
-					
-				}
+				
 				//Handle door cells within rooms
-				else if(testCell.getInitial() != 'W' && testCell.getDoorDirection() != DoorDirection.NONE) {
+				if(testCell.getInitial() != 'W' && testCell.getDoorDirection() != DoorDirection.NONE) {
 					switch(testCell.getDoorDirection()) {
 					case UP: 
 						adjCells.add(board[row-1][col]);
@@ -173,7 +169,7 @@ public class Board {
 					}
 				}
 				//Handle walkways
-				else {
+				else if(testCell.getInitial() == 'W') {
 					//Get every possible adjacency into a queue for more compact code
 					Queue adjQueue = new LinkedList();
 					//Simple bounds check
