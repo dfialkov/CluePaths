@@ -1,0 +1,15 @@
+Lightsaber, weapon
+Mjolnir, weapon
+Pillow, weapon
+Poison, weapon
+Kindness, weapon
+Feather, weapon
+Drone Strike, weapon
+Scissors, weapon
+Gun, weapon
+Ross, person, blue, 6, 0
+Rachel, person, red, 13, 0
+Pheobe, person, yellow, 19, 15
+Monica, person, orange, 9, 19
+Joey, person, purple, 19, 9
+Chandler, person, green, 0, 15

@@ -30,7 +30,9 @@ public class AdjTargetTests {
 		// Board is singleton, get the only instance
 		board = Board.getInstance();
 		// set the file names to use my config files
-		board.setConfigFiles("./CTestFiles/ourBoard.csv", "./CTestFiles/ourBoardLegend.txt");		
+		board.setConfigFiles("ourBoard.csv", "ourBoardLegend.txt");
+		//Sets the file name for the Cards
+		board.setCardConfigFile("cardsLegend.txt");
 		// Initialize will load BOTH config files 
 		board.initialize();
 	}

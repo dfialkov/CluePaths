@@ -6,6 +6,8 @@ package clueGame;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -13,6 +15,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.Queue;
+import java.util.Random;
 
 
 
@@ -26,18 +29,28 @@ public class Board {
 	private Map<Character, String> legend;
 	private Map<BoardCell, Set<BoardCell>> adjMatrix;
 	private Set<BoardCell> targets;
+	private ArrayList<Card> deck;
+	private ArrayList<String[]> names;
+	private ArrayList<Player> players;
 	private String boardConfigFile;
 	private String roomConfigFile;
+	private String cardConfigFile;
 	private HashSet visited;
+	Solution answer;
+
 
 	// variable used for singleton pattern
 	private static Board theInstance = new Board();
+
 
 	// constructor is private to ensure only one can be created
 	private Board() {
 		legend = new HashMap<Character, String>();
 		adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
 		targets = new HashSet<BoardCell>();
+		deck = new ArrayList<Card>();
+		names = new ArrayList<String[]>();
+		players = new ArrayList<Player>();
 	}
 
 	// this method returns the only Board
@@ -49,6 +62,82 @@ public class Board {
 		loadRoomConfig();
 		loadBoardConfig();
 		calcAdjacencies();
+		loadCardConfig();
+		createPlayers();
+		answer = new Solution();
+		deal();
+	}
+
+	public void deal() {
+		Random num = new Random();
+		int count = 0;
+		
+		while(deck.size() > 0) {
+			//Random card from remaining # of cards in deck
+			int index = num.nextInt(deck.size());
+			
+			//Draw Card & add to player's hand
+			players.get(count % 6).drawCard(deck.get(index));
+			
+			//Remove card from deck
+			deck.remove(index);
+			count++;
+		}
+	}
+	
+	public void createPlayers() {
+		
+		//Random index between 0 & size of the deck
+		Random num = new Random();
+		int index = num.nextInt(names.size());
+		
+		//Create Players & assign values: name,color,row,col
+		//namesArray:name0/type1/color2/row3/col4
+		//Create Human
+		Player human = new HumanPlayer(names.get(index)[0],names.get(index)[2],names.get(index)[3],names.get(index)[4]);
+		//Delete name at Index
+		names.remove(index);
+		//Add Player to players list
+		players.add(human);
+		
+		//Create Computers
+		for(int i = 0; i<5; i++ ) {
+			index = num.nextInt(names.size());
+			Player comp = new ComputerPlayer(names.get(index)[0],names.get(index)[2],names.get(index)[3],names.get(index)[4]);
+			names.remove(index);
+			players.add(comp);
+		}
+		
+	}
+
+	public void loadCardConfig() {
+		FileReader roomReader;
+
+		try {
+			roomReader = new FileReader(cardConfigFile);
+			Scanner roomScan = new Scanner(roomReader);
+
+			while(roomScan.hasNextLine()) {
+				String[] lineSplit= roomScan.nextLine().split(", ");
+				
+				//Create Card
+				Card card = new Card(lineSplit[0], lineSplit[1]);
+				
+				//Create list of 6 names
+				if(lineSplit[1].contentEquals("person") && names.size()<6) {
+					names.add(lineSplit);
+				}
+				
+				//Add to deck
+				deck.add(card);
+			}
+
+			roomScan.close();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	//Load in the room file
@@ -60,12 +149,18 @@ public class Board {
 			Scanner roomScan = new Scanner(roomReader);
 
 			while(roomScan.hasNextLine()) {
-				String[] array1= roomScan.nextLine().split(",");
-				legend.put(array1[0].charAt(0),array1[1].substring(1));
+				String[] lineSplit= roomScan.nextLine().split(", ");
+				legend.put(lineSplit[0].charAt(0),lineSplit[1]);
 
 				//Invalid Room Type
-				if(!array1[2].substring(1).contentEquals("Card") && !array1[2].substring(1).contentEquals("Other")) {
-					throw new BadConfigFormatException("Invalid Room Type: " + array1[2].substring(1));
+				if(!lineSplit[2].contentEquals("Card") && !lineSplit[2].contentEquals("Other")) {
+					throw new BadConfigFormatException("Invalid Room Type: " + lineSplit[2]);
+				}
+				
+				//Create Room card
+				if(lineSplit[2].contentEquals("Card")) {
+					Card card = new Card(lineSplit[1]);
+					deck.add(card);
 				}
 
 			}
@@ -273,6 +368,10 @@ public class Board {
 		roomConfigFile = roomConfig;
 	}
 
+	public void setCardConfigFile(String cardConfigFile) {
+		this.cardConfigFile = cardConfigFile;
+	}
+	
 	public Map<Character, String> getLegend() {
 		return legend;
 	}
@@ -285,6 +384,13 @@ public class Board {
 		return targets;
 	}
 
+	public ArrayList<Card> getDeck() {
+		return deck;
+	}
+
+	public ArrayList<Player> getPlayers() {
+		return players;
+	}
 
 
 
