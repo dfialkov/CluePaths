@@ -22,10 +22,21 @@ public class ComputerPlayer extends Player {
 
 
 public BoardCell pickLocation(Set<BoardCell> targets) {
-
-
+	Random rand = new Random();
+	int item = rand.nextInt(targets.size());
+	int i = 0;
+	for(BoardCell currCell : targets) {
+		//Prioritize unvisited rooms
+		if(currCell.isDoorway() && currCell.getInitial() != lastVisited) {
+			return currCell;
+		}
+		//Treat all others equally
+		if(i == item) {
+			return currCell;
+		}
+		i++;
+	}
 	return null;
-	
 }
 public void visit(char roomInitial) {
 	this.lastVisited = roomInitial;

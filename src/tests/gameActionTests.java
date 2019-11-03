@@ -41,13 +41,13 @@ public class gameActionTests {
 				loc_13_6 = true;
 			}
 			else if(selected == board.getCellAt(11, 6)) {
-				loc_13_6 = true;
+				loc_11_6 = true;
 			}
 			else if(selected == board.getCellAt(12, 5)) {
-				loc_13_6 = true;
+				loc_12_5 = true;
 			}
 			else if(selected == board.getCellAt(12, 7)) {
-				loc_13_6 = true;
+				loc_12_7 = true;
 			}
 			else {
 				fail("Invalid target selected");
@@ -55,9 +55,9 @@ public class gameActionTests {
 			
 		}
 		assertTrue(loc_13_6);
-		assertTrue(loc_11_6);
 		assertTrue(loc_12_5);
 		assertTrue(loc_12_7);
+		assertTrue(loc_11_6);
 	}
 	//Test destination behavior when an unvisited room is available
 	@Test
@@ -74,6 +74,7 @@ public class gameActionTests {
 		ComputerPlayer player = new ComputerPlayer("Test", "blue", 1, 14);
 		player.visit('L');
 		board.calcTargets(1, 14, 1);
+		assertTrue(board.getTargets().size() == 4);
 		boolean loc_1_13 = false;
 		boolean loc_0_14 = false;
 		boolean loc_2_14 = false;
@@ -81,26 +82,27 @@ public class gameActionTests {
 
 		for(int i = 0;i<100;i++) {
 			BoardCell selected = player.pickLocation(board.getTargets());
-			if(selected == board.getCellAt(13, 6)) {
+			if(selected == board.getCellAt(1, 13)) {
 				loc_1_13 = true;
 			}
-			else if(selected == board.getCellAt(11, 6)) {
+			else if(selected == board.getCellAt(0, 14)) {
 				loc_0_14 = true;
 			}
-			else if(selected == board.getCellAt(12, 5)) {
+			else if(selected == board.getCellAt(2, 14)) {
 				loc_2_14 = true;
 			}
-			else if(selected == board.getCellAt(12, 7)) {
+			else if(selected == board.getCellAt(1, 15)) {
 				loc_1_15 = true;
 			}
 			else {
 				fail("Invalid target selected");
 			}
-			assertTrue(loc_1_13);
-			assertTrue(loc_0_14);
-			assertTrue(loc_2_14);
-			assertTrue(loc_1_15);
+			
 		}
+		assertTrue(loc_1_13);
+		assertTrue(loc_0_14);
+		assertTrue(loc_2_14);
+		assertTrue(loc_1_15);
 	}
 
 
