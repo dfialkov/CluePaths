@@ -36,9 +36,9 @@ public class p1BoardTests {
 		// Board is singleton, get the only instance
 		board = Board.getInstance();
 		// set the file names to use my config files
-		board.setConfigFiles("ourBoard.csv", "ourBoardLegend.txt");	
+		board.setConfigFiles("./CTestFiles/ourBoard.csv", "./CTestFiles/ourBoardLegend.txt");	
 		//Sets the file name for the Cards
-		board.setCardConfigFile("cardsLegend.txt");
+		board.setCardConfigFile("./CTestFiles/cardsLegend.txt");
 		// Initialize will load BOTH config files 
 		board.initialize();
 	}

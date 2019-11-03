@@ -86,7 +86,8 @@ public class Board {
 	}
 	
 	public void createPlayers() {
-		
+		//Needed to make some tests work
+		players.clear();
 		//Random index between 0 & size of the deck
 		Random num = new Random();
 		int index = num.nextInt(names.size());
@@ -103,7 +104,7 @@ public class Board {
 		//Create Computers
 		for(int i = 0; i<5; i++ ) {
 			index = num.nextInt(names.size());
-			Player comp = new ComputerPlayer(names.get(index)[0],names.get(index)[2],names.get(index)[3],names.get(index)[4]);
+			Player comp = new ComputerPlayer(names.get(index)[0],names.get(index)[2], Integer.valueOf(names.get(index)[3]),Integer.valueOf(names.get(index)[4]));
 			names.remove(index);
 			players.add(comp);
 		}
@@ -234,7 +235,6 @@ public class Board {
 	} 
 
 
-	//Implemented in IntBoard. Take a look at C12A2 for more info
 	public void calcAdjacencies() {
 		adjMatrix = new HashMap();
 		//Code to populate adj map, checks for valid coordinates before adding cell.
@@ -391,6 +391,8 @@ public class Board {
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
+	
+	
 
 
 

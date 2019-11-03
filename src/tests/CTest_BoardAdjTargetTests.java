@@ -28,9 +28,9 @@ public class CTest_BoardAdjTargetTests {
 		// Board is singleton, get the only instance
 		board = Board.getInstance();
 		// set the file names to use my config files
-		board.setConfigFiles("CTest_ClueLayout.csv", "CTest_ClueLegend.txt");		
+		board.setConfigFiles("./CTestFiles/CTest_ClueLayout.csv", "./CTestFiles/CTest_ClueLegend.txt");		
 		//Sets the file name for the Cards
-		board.setCardConfigFile("cardsLegend.txt");
+		board.setCardConfigFile("./CTestFiles/cardsLegend.txt");
 		// Initialize will load BOTH config files 
 		board.initialize();
 	}

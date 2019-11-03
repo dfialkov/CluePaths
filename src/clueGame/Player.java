@@ -11,7 +11,6 @@ public abstract class Player {
 	protected int col;
 	Color color;
 	ArrayList<Card> cards;
-	
 	public Player(String playerName) {
 		this.playerName = playerName;
 	}
@@ -27,6 +26,7 @@ public abstract class Player {
 		 }
 		 return color;
 		}
+	
 	
 	public void drawCard(Card card) {
 		cards.add(card);
@@ -56,5 +56,6 @@ public abstract class Player {
 	public ArrayList<Card> getCards() {
 		return cards;
 	}
+	
 	
 }
