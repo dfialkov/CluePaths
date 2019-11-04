@@ -162,6 +162,11 @@ public class gameActionTests {
 		}
 	}
 	
+	@Test
+	public void testDisprove() {
+		Player testPlayer = new ComputerPlayer("Test", "Blue", 18, 2);
+	}
+	
 
 
 
