@@ -62,11 +62,17 @@ public class gameActionTests {
 	//Test destination behavior when an unvisited room is available
 	@Test
 	public void testRandomSelection1Room() {
-		ComputerPlayer player = new ComputerPlayer("Test", "blue", 18, 3);
+		ComputerPlayer player = new ComputerPlayer("Test", "blue", 19, 3);
 		board.calcTargets(19, 3, 2);
+		boolean always_18_2 = true;
 		for(int i = 0;i<100;i++) {
-			assertEquals(player.pickLocation(board.getTargets()), board.getCellAt(18, 2));
+			BoardCell selected = player.pickLocation(board.getTargets());
+			if(selected != board.getCellAt(18, 2)) {
+				always_18_2 = false;
+			}
+			
 		}
+		assertFalse(always_18_2);
 	}
 	//Test destination behavior when a visited room is an option
 	@Test

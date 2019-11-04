@@ -350,7 +350,12 @@ public class Board {
 	}
 	
 	public boolean handleAccusation(Solution accusation) {
-		return false;
+		if(accusation.equals(answer)) {
+			return true;
+		}
+		else {
+			return false;
+		}
 		
 	}
 
