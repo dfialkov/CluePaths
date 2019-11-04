@@ -40,26 +40,7 @@ public abstract class Player {
 	}
 	
 	public Solution makeSuggestion() {
-		calcUnseen();
-		//The room comes from the board, not unseen cards.
-		String suggestionPerson = null;
-		String suggestionWeapon = null;
-		//Keep looking at unseen cards until you have a weapon and a person
-		while(suggestionPerson == null || suggestionWeapon == null) {
-			Card topCard = unseenCards.get(0);
-			if(topCard.getType() == CardType.PERSON && suggestionPerson == null) {
-				suggestionPerson = topCard.getCardName();
-			}
-			else if(topCard.getType() == CardType.WEAPON && suggestionWeapon == null) {
-				suggestionWeapon = topCard.getCardName();
-			}
-			Collections.shuffle(unseenCards);
-		}
-		Board theBoard = Board.getInstance();
-		//Finalize suggestion with calculated parameters
-		Solution mySuggestion = new Solution(suggestionPerson, theBoard.getLegend().get(theBoard.getCellAt(row, col).getInitial()), suggestionWeapon);
-		theBoard.handleSuggestion(mySuggestion);
-		return mySuggestion;
+return null;
 	
 	}
 	//Gets the unseen cards by taking a list with the entire deck and removing the ones that have been seen. Do this before doing anything that requires decisions based on cards.
