@@ -69,29 +69,33 @@ public class Board {
 	}
 
 	public void deal() {
+		for(Player currPlayer : players) {
+			for (Card currCard : deck) {
+				currPlayer.constructFull(currCard);
+			}
+		}		
 		Random num = new Random();
 		int count = 0;
-		
+
 		while(deck.size() > 0) {
 			//Random card from remaining # of cards in deck
 			int index = num.nextInt(deck.size());
-			
+
 			//Draw Card & add to player's hand
 			players.get(count % 6).drawCard(deck.get(index));
-			
 			//Remove card from deck
 			deck.remove(index);
 			count++;
 		}
 	}
-	
+
 	public void createPlayers() {
 		//Needed to make some tests work
 		players.clear();
 		//Random index between 0 & size of the deck
 		Random num = new Random();
 		int index = num.nextInt(names.size());
-		
+
 		//Create Players & assign values: name,color,row,col
 		//namesArray:name0/type1/color2/row3/col4
 		//Create Human
@@ -100,7 +104,7 @@ public class Board {
 		names.remove(index);
 		//Add Player to players list
 		players.add(human);
-		
+
 		//Create Computers
 		for(int i = 0; i<5; i++ ) {
 			index = num.nextInt(names.size());
@@ -108,7 +112,7 @@ public class Board {
 			names.remove(index);
 			players.add(comp);
 		}
-		
+
 	}
 
 	public void loadCardConfig() {
@@ -120,17 +124,17 @@ public class Board {
 
 			while(roomScan.hasNextLine()) {
 				String[] lineSplit= roomScan.nextLine().split(", ");
-				
+
 				//Create Card
 				Card card = new Card(lineSplit[0], lineSplit[1]);
-				
 				//Create list of 6 names
 				if(lineSplit[1].contentEquals("person") && names.size()<6) {
 					names.add(lineSplit);
 				}
-				
+
 				//Add to deck
 				deck.add(card);
+
 			}
 
 			roomScan.close();
@@ -138,7 +142,7 @@ public class Board {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	//Load in the room file
@@ -157,7 +161,7 @@ public class Board {
 				if(!lineSplit[2].contentEquals("Card") && !lineSplit[2].contentEquals("Other")) {
 					throw new BadConfigFormatException("Invalid Room Type: " + lineSplit[2]);
 				}
-				
+
 				//Create Room card
 				if(lineSplit[2].contentEquals("Card")) {
 					Card card = new Card(lineSplit[1]);
@@ -263,7 +267,7 @@ public class Board {
 					default:
 						break;
 					}
-					
+
 				}
 				//Handle walkways
 				else if(testCell.getInitial() == 'W') {
@@ -349,6 +353,10 @@ public class Board {
 		}
 	}
 	
+	public Card handleSuggestion(Solution suggestion) {
+		return null;
+	}
+
 	public boolean handleAccusation(Solution accusation) {
 		if(accusation.equals(answer)) {
 			return true;
@@ -356,11 +364,11 @@ public class Board {
 		else {
 			return false;
 		}
-		
+
 	}
 
 
-	//Getters. Self-explanatory
+	//Setters and getters. Self-explanatory
 	public BoardCell getCellAt(int row, int col) {
 		return board[row][col];
 	}
@@ -381,7 +389,7 @@ public class Board {
 	public void setCardConfigFile(String cardConfigFile) {
 		this.cardConfigFile = cardConfigFile;
 	}
-	
+
 	public Map<Character, String> getLegend() {
 		return legend;
 	}
@@ -401,12 +409,14 @@ public class Board {
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
+	
 	//Testing purposes only
 	public void setSolution(String setPerson, String setWeapon, String setRoom) {
 		answer = new Solution(setPerson, setWeapon, setRoom);
 	}
 	
-	
+
+
 
 
 

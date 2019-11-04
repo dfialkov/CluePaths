@@ -2,6 +2,7 @@
 package clueGame;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
@@ -9,13 +10,14 @@ import java.util.Set;
 
 public class ComputerPlayer extends Player {
 	char lastVisited;
+
 	
 	public ComputerPlayer(String playerName, String color, int row, int col) {
 		super(playerName);
 		this.row = row;
 		this.col = col;
 		
-		cards = new ArrayList<Card>();
+		hand = new ArrayList<Card>();
 		convertColor(color);
 	}
 	
@@ -28,10 +30,14 @@ public BoardCell pickLocation(Set<BoardCell> targets) {
 	for(BoardCell currCell : targets) {
 		//Prioritize unvisited rooms
 		if(currCell.isDoorway() && currCell.getInitial() != lastVisited) {
+			this.row = currCell.getRow();
+			this.col = currCell.getCol();
 			return currCell;
 		}
 		//Treat all others equally
 		if(i == item) {
+			this.row = currCell.getRow();
+			this.col = currCell.getCol();
 			return currCell;
 		}
 		i++;

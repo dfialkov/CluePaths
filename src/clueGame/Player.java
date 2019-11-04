@@ -3,14 +3,20 @@ package clueGame;
 
 import java.awt.Color;
 import java.lang.reflect.Field;
-import java.util.ArrayList; 
+import java.util.ArrayList;
+import java.util.Collections; 
 
 public abstract class Player {
+
 	private String playerName;
 	protected int row;
 	protected int col;
 	Color color;
-	ArrayList<Card> cards;
+	//Never modify this. I'd make it final but it needs to be procedurally filled.
+	private ArrayList<Card> allCards = new ArrayList<Card>();
+	private ArrayList<Card> seenCards = new ArrayList<Card>();
+	private ArrayList<Card> unseenCards = new ArrayList<Card>();
+	ArrayList<Card> hand;
 	public Player(String playerName) {
 		this.playerName = playerName;
 	}
@@ -29,10 +35,49 @@ public abstract class Player {
 	
 	
 	public void drawCard(Card card) {
-		cards.add(card);
+		hand.add(card);
+		seeCard(card);
 	}
 	
-	//Setter/Getters for Row/Col position
+	public Solution makeSuggestion() {
+		calcUnseen();
+		//The room comes from the board, not unseen cards.
+		String suggestionPerson = null;
+		String suggestionWeapon = null;
+		//Keep looking at unseen cards until you have a weapon and a person
+		while(suggestionPerson == null || suggestionWeapon == null) {
+			Card topCard = unseenCards.get(0);
+			if(topCard.getType() == CardType.PERSON && suggestionPerson == null) {
+				suggestionPerson = topCard.getCardName();
+			}
+			else if(topCard.getType() == CardType.WEAPON && suggestionWeapon == null) {
+				suggestionWeapon = topCard.getCardName();
+			}
+			Collections.shuffle(unseenCards);
+		}
+		Board theBoard = Board.getInstance();
+		//Finalize suggestion with calculated parameters
+		Solution mySuggestion = new Solution(suggestionPerson, theBoard.getLegend().get(theBoard.getCellAt(row, col).getInitial()), suggestionWeapon);
+		theBoard.handleSuggestion(mySuggestion);
+		return mySuggestion;
+	
+	}
+	//Gets the unseen cards by taking a list with the entire deck and removing the ones that have been seen. Do this before doing anything that requires decisions based on cards.
+	public void calcUnseen() {
+		for(Card toUnsee : allCards) {
+			unseenCards.add(toUnsee);
+		}
+		for(int i = 0;i<unseenCards.size();i++) {
+			Card testCard = unseenCards.get(i);
+			for(Card seenCard : seenCards) {
+				if(testCard == seenCard) {
+					unseenCards.remove(i);
+				}
+			}
+		}
+	}
+	
+	//Setter/Getters 
 	public int getRow() {
 		return row;
 	}
@@ -54,8 +99,22 @@ public abstract class Player {
 	}
 
 	public ArrayList<Card> getCards() {
-		return cards;
+		return hand;
 	}
+	//The actual contents of unseenCards are constructed elsewhere
+	public void unseeCard(Card toUnsee) {
+		unseenCards.add(toUnsee);
+	}
+	//Add to seen cards, happens when a card is added to hand or revealed
+	public void seeCard(Card toSee) {
+		seenCards.add(toSee);
+	}
+	//Add to the ideal list of cards that's not to be modified
+	public void constructFull(Card toAdd) {
+		allCards.add(toAdd);
+	}
+	
+	
 	
 	
 }

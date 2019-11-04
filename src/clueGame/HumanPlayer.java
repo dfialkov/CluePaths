@@ -10,7 +10,7 @@ public class HumanPlayer extends Player {
 		this.row = Integer.valueOf(row);
 		this.col = Integer.valueOf(col);
 		
-		cards = new ArrayList<Card>();
+		hand = new ArrayList<Card>();
 		convertColor(color);
 	}
 

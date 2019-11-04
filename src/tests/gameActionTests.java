@@ -123,16 +123,45 @@ public class gameActionTests {
 		assertFalse(board.handleAccusation(new Solution("Not Item 1", "Item 2", "Item 3")));
 	}
 	//Test wrong room
+	@Test
 	public void testAccusationWrongRoom() {
 		board.setSolution("Item 1", "Item 2", "Item 3");
 		assertFalse(board.handleAccusation(new Solution("Item 1", "Not Item 2", "Item 3")));
 	}
 	//Test wrong weapon
+	@Test
 	public void testAccusationWrongWeapon() {
 		board.setSolution("Item 1", "Item 2", "Item 3");
 		assertFalse(board.handleAccusation(new Solution("Item 1", "Item 2", "Not Item 3")));
 	}
-
+	
+	//Test suggestions
+	//Ensure weapon  and person is chosen randomly from those not seen
+	//Worth noting that the return value of makeSuggestion isn't actually used for anything except testing.
+	@Test
+	public void ensureRandomWeapon() {
+		//Place player in room
+		Player testPlayer = new ComputerPlayer("Test", "Blue", 18, 2);
+		//Make a right and wrong weapon, show wrong to player.
+		Card wrongWeapon = new Card("umbrella", "weapon");
+		testPlayer.drawCard(wrongWeapon);
+		Card correctWeapon = new Card("zweihander", "weapon");
+		testPlayer.unseeCard(correctWeapon);
+		testPlayer.constructFull(wrongWeapon);
+		testPlayer.constructFull(correctWeapon);
+		testPlayer.constructFull(new Card("me", "person"));
+		for(int i = 0;i<100;i++) {
+			Solution mySuggestion = testPlayer.makeSuggestion();
+			boolean is_correct_weapon = mySuggestion.getWeapon().equals("zweihander");
+			boolean is_correct_room = mySuggestion.getRoom().equals("Man Cave");
+			boolean is_correct_person = mySuggestion.getPerson().equals("me");
+			assertTrue(is_correct_weapon);
+			assertTrue(is_correct_room);
+			assertTrue(is_correct_person);
+			
+		}
+	}
+	
 
 
 
