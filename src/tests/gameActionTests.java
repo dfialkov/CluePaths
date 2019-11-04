@@ -72,7 +72,7 @@ public class gameActionTests {
 			}
 			
 		}
-		assertFalse(always_18_2);
+		assertTrue(always_18_2);
 	}
 	//Test destination behavior when a visited room is an option
 	@Test
@@ -161,10 +161,22 @@ public class gameActionTests {
 			
 		}
 	}
-	
+	//I'm testing disproving suggestions first. It seems like a better order than the one in the assignment
+	//Test to see the method correctly returning cards
 	@Test
-	public void testDisprove() {
+	public void testDisprovePossible() {
+		//Give the player a card and supply a matching suggestion
 		Player testPlayer = new ComputerPlayer("Test", "Blue", 18, 2);
+		testPlayer.drawCard(new Card("umbrella", "weapon"));
+		Solution testSuggestion = new Solution("A person", "A room", "umbrella");
+		assertTrue(testPlayer.disproveSuggestion(testSuggestion).getCardName() == "umbrella");
+	}
+	//Test to see the method correctly returning null when the player has no matching cards
+	@Test
+	public void testDisproveImpossible() {
+		Player testPlayer = new ComputerPlayer("Test", "Blue", 18, 2);
+		Solution testSuggestion = new Solution("A person", "A room", "umbrella");
+		assertTrue(testPlayer.disproveSuggestion(testSuggestion) == null);
 	}
 	
 

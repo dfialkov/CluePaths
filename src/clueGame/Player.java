@@ -78,6 +78,11 @@ public abstract class Player {
 	}
 	
 	public Card disproveSuggestion(Solution suggestion) {
+		for(Card inHand : hand) {
+			if(inHand.getCardName() == suggestion.getPerson() || inHand.getCardName() == suggestion.getWeapon() || inHand.getCardName() == suggestion.getRoom()) {
+				return inHand;
+			}
+		}
 		return null;
 	}
 	
