@@ -42,4 +42,8 @@ public void visit(char roomInitial) {
 	this.lastVisited = roomInitial;
 }
 
+public void accuse() {
+	//TODO: Create code for the program to determine what to use when accusing.
+}
+
 }

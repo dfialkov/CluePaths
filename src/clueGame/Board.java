@@ -348,6 +348,11 @@ public class Board {
 
 		}
 	}
+	
+	public boolean handleAccusation(Solution accusation) {
+		return false;
+		
+	}
 
 
 	//Getters. Self-explanatory
@@ -390,6 +395,10 @@ public class Board {
 
 	public ArrayList<Player> getPlayers() {
 		return players;
+	}
+	//Testing purposes only
+	public void setSolution(String setPerson, String setWeapon, String setRoom) {
+		answer = new Solution(setPerson, setWeapon, setRoom);
 	}
 	
 	

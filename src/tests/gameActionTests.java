@@ -104,6 +104,29 @@ public class gameActionTests {
 		assertTrue(loc_2_14);
 		assertTrue(loc_1_15);
 	}
+	//Test correct accusation
+	@Test
+	public void testAccusation() {
+		board.setSolution("Item 1", "Item 2", "Item 3");
+		assertTrue(board.handleAccusation(new Solution("Item 1", "Item 2", "Item 3")));
+	}
+	//Test wrong person
+	@Test
+	public void testAccusationWrongPerson() {
+		board.setSolution("Item 1", "Item 2", "Item 3");
+		assertFalse(board.handleAccusation(new Solution("Not Item 1", "Item 2", "Item 3")));
+	}
+	//Test wrong room
+	public void testAccusationWrongRoom() {
+		board.setSolution("Item 1", "Item 2", "Item 3");
+		assertFalse(board.handleAccusation(new Solution("Item 1", "Not Item 2", "Item 3")));
+	}
+	//Test wrong weapon
+	public void testAccusationWrongWeapon() {
+		board.setSolution("Item 1", "Item 2", "Item 3");
+		assertFalse(board.handleAccusation(new Solution("Item 1", "Item 2", "Not Item 3")));
+	}
+
 
 
 

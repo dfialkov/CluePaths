@@ -46,6 +46,22 @@ public class Solution {
 			}
 		}
 	}
+	//This is for accusations/suggestions
+		public Solution(String testPerson, String testRoom, String testWeapon) {
+			this.person = testPerson;
+			this.room =testRoom;
+			this.weapon = testWeapon;
+		}
+	//
+	@Override
+	public boolean equals(Object S) {
+		if(((Solution) S).getPerson().equals(this.getPerson()) && ((Solution) S).getRoom().equals(this.getRoom()) &&  ((Solution) S).getWeapon().equals(this.getWeapon())) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	
 	public String getPerson() {
 		return person;
@@ -58,7 +74,8 @@ public class Solution {
 	public String getWeapon() {
 		return weapon;
 	}
-
+	
+	
 	
 	
 
