@@ -354,7 +354,18 @@ public class Board {
 	}
 	
 	public Card handleSuggestion(Solution suggestion, String accuserName) {
-return null;
+		for(Player currPlayer : players) {
+			if(currPlayer.getName() != accuserName) {
+				Card disproveCard = currPlayer.disproveSuggestion(suggestion);
+				if(disproveCard != null) {
+					for(Player seeingPlayer : players) {
+						seeingPlayer.seeCard(disproveCard);
+					}
+					return disproveCard;
+				}
+			}
+		}
+		return null;
 	}
 
 	public boolean handleAccusation(Solution accusation) {

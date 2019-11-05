@@ -64,15 +64,14 @@ public class gameActionTests {
 	public void testRandomSelection1Room() {
 		ComputerPlayer player = new ComputerPlayer("Test", "blue", 19, 3);
 		board.calcTargets(19, 3, 2);
-		boolean always_18_2 = true;
 		for(int i = 0;i<100;i++) {
 			BoardCell selected = player.pickLocation(board.getTargets());
 			if(selected != board.getCellAt(18, 2)) {
-				always_18_2 = false;
+				fail("Invalid location selected as target");
 			}
 
 		}
-		assertTrue(always_18_2);
+		assertTrue(true);
 	}
 	//Test destination behavior when a visited room is an option
 	@Test
@@ -272,7 +271,7 @@ public class gameActionTests {
 		board.addPlayer(yetAnotherPlayer);
 		//If the zweihander is not displayed, then the order is breaking
 		for(int i = 0;i<100;i++) {
-			assertTrue(board.handleSuggestion(new Solution("zweihander", "you", "closet"), "Suggester").getCardName().equals("zweihander"));
+			assertTrue(board.handleSuggestion(new Solution("zweihander", "you", "closet"), "Suggester").getCardName().equals("you"));
 		}
 	}
 	//

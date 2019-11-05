@@ -28,12 +28,14 @@ public BoardCell pickLocation(Set<BoardCell> targets) {
 	int item = rand.nextInt(targets.size());
 	int i = 0;
 	for(BoardCell currCell : targets) {
-		//Prioritize unvisited rooms
+		//Scan for unvisited doors before making random selection
 		if(currCell.isDoorway() && currCell.getInitial() != lastVisited) {
 			this.row = currCell.getRow();
 			this.col = currCell.getCol();
 			return currCell;
 		}
+	}
+		for(BoardCell currCell : targets) {
 		//Treat all others equally
 		if(i == item) {
 			this.row = currCell.getRow();
@@ -42,6 +44,7 @@ public BoardCell pickLocation(Set<BoardCell> targets) {
 		}
 		i++;
 	}
+		
 	return null;
 }
 public void visit(char roomInitial) {
