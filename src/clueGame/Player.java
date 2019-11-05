@@ -58,7 +58,7 @@ public abstract class Player {
 		Board theBoard = Board.getInstance();
 		//Finalize suggestion with calculated parameters
 		Solution mySuggestion = new Solution(suggestionPerson, theBoard.getLegend().get(theBoard.getCellAt(row, col).getInitial()), suggestionWeapon);
-		theBoard.handleSuggestion(mySuggestion);
+		theBoard.handleSuggestion(mySuggestion, this.playerName);
 		return mySuggestion;
 	
 	}
@@ -78,6 +78,8 @@ public abstract class Player {
 	}
 	
 	public Card disproveSuggestion(Solution suggestion) {
+		//Ensures randomness in case of multiple options while also providing consistency across multiple calls
+		Collections.shuffle(hand);
 		for(Card inHand : hand) {
 			if(inHand.getCardName() == suggestion.getPerson() || inHand.getCardName() == suggestion.getWeapon() || inHand.getCardName() == suggestion.getRoom()) {
 				return inHand;

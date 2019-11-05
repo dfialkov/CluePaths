@@ -99,7 +99,7 @@ public class Board {
 		//Create Players & assign values: name,color,row,col
 		//namesArray:name0/type1/color2/row3/col4
 		//Create Human
-		Player human = new HumanPlayer(names.get(index)[0],names.get(index)[2],names.get(index)[3],names.get(index)[4]);
+		Player human = new HumanPlayer(names.get(index)[0],names.get(index)[2],Integer.valueOf(names.get(index)[3]),Integer.valueOf(names.get(index)[4]));
 		//Delete name at Index
 		names.remove(index);
 		//Add Player to players list
@@ -353,8 +353,8 @@ public class Board {
 		}
 	}
 	
-	public Card handleSuggestion(Solution suggestion) {
-		return null;
+	public Card handleSuggestion(Solution suggestion, String accuserName) {
+return null;
 	}
 
 	public boolean handleAccusation(Solution accusation) {
@@ -405,11 +405,17 @@ public class Board {
 	public ArrayList<Card> getDeck() {
 		return deck;
 	}
-
+//For testing handleSuggestion()
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
-	
+	public void clearPlayers() {
+		players.clear();
+	}
+	public void addPlayer(Player toAdd) {
+		players.add(toAdd);
+	}
+
 	//Testing purposes only
 	public void setSolution(String setPerson, String setWeapon, String setRoom) {
 		answer = new Solution(setPerson, setWeapon, setRoom);
