@@ -1,3 +1,135 @@
+commit 21e86b7aadc1d3e1df783de7feabb6daf02a6b00
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Mon Nov 4 19:47:28 2019 -0700
+
+    Fixed intermittent bug in pickLocation. Implemented handleSuggesion()
+
+commit f339ca021be963a81bfc06a7bfe41bc433067aa6
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Mon Nov 4 19:30:58 2019 -0700
+
+    Implemented handleSuggestion tests
+
+commit c59ed15d8c0d79a98ed92e8bc0a07a77be6f6fe7
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Mon Nov 4 16:22:39 2019 -0700
+
+    Improved test documentation. Implemented disproveSuggestion
+
+commit a2973d050b44bdf9881281c8de38e733194fea79
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Mon Nov 4 16:16:44 2019 -0700
+
+    Added suggestion disprove tests and stubs
+
+commit d9947c05c30144204baeb469721139b6bf47b9c6
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Mon Nov 4 14:52:53 2019 -0700
+
+    Fixed bug in suggestion tests
+
+commit 324a42c34c95aa49156cf75cd86cb49a52745659
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Mon Nov 4 10:10:21 2019 -0700
+
+    Finished makeSuggestion tests, added helper methods
+
+commit c055fb4df4eee028d666cf08f1ba47142ce8e542
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Sun Nov 3 18:59:53 2019 -0700
+
+    implemented acc handling, fixed bizarre test bug
+
+commit 8e79a4f79ada85e657bcc3886dfe65c27bd7b02b
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Sun Nov 3 18:19:16 2019 -0700
+
+    Wrote tests for accusation, also added helper methods
+
+commit bd76999a784e94941996535932f25442a224a2e6
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Sun Nov 3 15:49:06 2019 -0700
+
+    Completed target selection, fixed bugs in tests
+
+commit b3bb377f4836b7e48e9cbeb3ffe2e1b5dffa0b23
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Sun Nov 3 15:28:17 2019 -0700
+
+    Added failing test for cell selection
+
+commit 5980e4b2f98a2ef41d8eece217099f5d75712848
+Author: Darian Dickerson <ddickers@mymail.mines.edu>
+Date:   Sun Nov 3 08:54:53 2019 -0700
+
+    Clue Players I
+
+commit 7065f215f2e0731e4b926f053020c4ee371d5273
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Fri Oct 25 17:00:46 2019 -0600
+
+    Removed unnecessary check before closing file
+
+commit d085f875d66b8d49be4f5e8dc06098d6ebc6a7cf
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Fri Oct 25 16:59:47 2019 -0600
+
+    completed enum in calcAdjacencies()
+
+commit 2648de11038753e29f70409ee4c2723a1eb638d3
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Fri Oct 25 16:57:40 2019 -0600
+
+    Refactored BoardCell to remove unnecessary variables
+
+commit 8222641ff6e32c19084de7dedf03643cedb115b1
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Fri Oct 25 16:47:11 2019 -0600
+
+    Renamed vague variable array1 to rowContents
+
+commit 5389b9540e3a0501792d3158b6993982a16baa0d
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Fri Oct 25 16:45:54 2019 -0600
+
+    Removed unnecessary variables in loadBoardConfig()
+
+commit eda2bee7588d6c631bff912d736bbf6ddc827451
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Fri Oct 25 16:43:55 2019 -0600
+
+    Moved array designators around
+
+commit 7f130cd13b1ba77765e6a002c2c77e403aff0317
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Fri Oct 25 16:41:39 2019 -0600
+
+    merged nested ifs in calcAdjacencies
+
+commit 40e4c80cf4b91cb8129b6b965f83e2e4bda8ed29
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Fri Oct 25 16:40:16 2019 -0600
+
+    Past commits accidentally deleted
+
+commit c4d3ad39f02b53aa805a40354d486566e391b62a
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Fri Oct 25 15:28:58 2019 -0600
+
+    Removed another empty block in calcAdjacencies()
+
+commit 545bf5536ca77702e0602ad5ceda85029e8cf5a0
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Fri Oct 25 15:26:13 2019 -0600
+
+    Removed empty block from calcAdjacencies()
+
+commit 42bea11e56d30b797554df542b4c13989b5f4954
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Wed Oct 23 20:12:52 2019 -0600
+
+    updated log txt for real this time
+
 commit 444019c1a249437926ff8beae12e492a0c52bd13
 Author: dfialkov <dfialkov@mymail.mines.edu>
 Date:   Wed Oct 23 20:11:47 2019 -0600
