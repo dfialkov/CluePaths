@@ -1,7 +1,7 @@
 package clueGame;
 
 
-//It's not immediately clear from the logs but this is part of Darian's contribution to the assignment. Feel free to check the last commit to verify that this code was here before I started working on it, if you want.
+//It's not immediately clear from the logs but this is part of Darian's contribution to C22A. Feel free to check the last commit to verify that this code was here before I started working on it, if you want.
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.util.ArrayList;
