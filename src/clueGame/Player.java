@@ -116,7 +116,9 @@ public abstract class Player {
 	public void setCol(int col) {
 		this.col = col;
 	}
-
+	public String getHumanName() {
+		return null;
+	}
 	public String getName() {
 		return playerName;
 	}

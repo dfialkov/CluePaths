@@ -13,5 +13,8 @@ public class HumanPlayer extends Player {
 		hand = new ArrayList<Card>();
 		convertColor(color);
 	}
-
+	@Override
+	public String getHumanName() {
+		return this.getName();
+	}
 }

@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 public class ClueGUI extends JFrame{
 	private static Board board;
@@ -42,7 +43,10 @@ public class ClueGUI extends JFrame{
 		
 		//Create Detective Notes 
 		notes = new NotesDialog();
-	
+		
+		//Create starting splash screen.
+		JOptionPane.showMessageDialog(south, "You are playing as " + board.getHumanPlayerName() + ", press Next Player to begin play.", "Welcom to Clue!", JOptionPane.INFORMATION_MESSAGE);
+			
 	}	
 	
 	private JMenu createFileMenu() {

@@ -415,7 +415,15 @@ public class Board extends JPanel{
 	public int getNumColumns() {
 		return numColumns;
 	}
-
+	
+	public String getHumanPlayerName() {
+		for(Player player : players) {
+			if(player.getHumanName() != null) {
+				return player.getHumanName();
+			}
+		}
+		return null;
+	}
 	public void setConfigFiles(String boardConfig, String roomConfig) {
 		boardConfigFile = boardConfig;
 		roomConfigFile = roomConfig;
