@@ -22,8 +22,8 @@ public class ClueGUI extends JFrame{
 		
 		//Add Board
 		board = Board.getInstance();
-		board.setConfigFiles("ourBoard.csv", "ourBoardLegend.txt");
-		board.setCardConfigFile("cardsLegend.txt");
+		board.setConfigFiles("./CTestFiles/ourBoard.csv", "./CTestFiles/ourBoardLegend.txt");
+		board.setCardConfigFile("./CTestFiles/cardsLegend.txt");
 		board.initialize();
 		add(board,BorderLayout.CENTER);
 		
