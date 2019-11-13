@@ -4,6 +4,8 @@
 
 package clueGame;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -14,13 +16,16 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+
+import javax.swing.JPanel;
+
 import java.util.Queue;
 import java.util.Random;
 
 
 
 
-public class Board {
+public class Board extends JPanel{
 	// instance variables
 	public static final int MAX_BOARD_SIZE = 50;
 	private BoardCell[][] board;
@@ -30,6 +35,7 @@ public class Board {
 	private Map<BoardCell, Set<BoardCell>> adjMatrix;
 	private Set<BoardCell> targets;
 	private ArrayList<Card> deck;
+	private ArrayList<Card> copy;
 	private ArrayList<String[]> names;
 	private ArrayList<Player> players;
 	private String boardConfigFile;
@@ -49,6 +55,7 @@ public class Board {
 		adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
 		targets = new HashSet<BoardCell>();
 		deck = new ArrayList<Card>();
+		copy = new ArrayList<Card>();
 		names = new ArrayList<String[]>();
 		players = new ArrayList<Player>();
 	}
@@ -67,7 +74,23 @@ public class Board {
 		answer = new Solution();
 		deal();
 	}
-
+	
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+	
+		for(BoardCell[] cellRow: board ) {
+			for(BoardCell cell: cellRow) {
+				cell.draw(g);
+			}
+		}
+		
+		for(Player person: players) {
+			person.draw(g);
+		}
+		
+	}
+	
 	public void deal() {
 		for(Player currPlayer : players) {
 			for (Card currCard : deck) {
@@ -84,6 +107,7 @@ public class Board {
 			//Draw Card & add to player's hand
 			players.get(count % 6).drawCard(deck.get(index));
 			//Remove card from deck
+			copy.add(new Card(deck.get(index).getCardName(),deck.get(index).getType()));
 			deck.remove(index);
 			count++;
 		}
@@ -415,6 +439,10 @@ public class Board {
 
 	public ArrayList<Card> getDeck() {
 		return deck;
+	}
+	
+	public ArrayList<Card> getCopy() {
+		return  copy;
 	}
 //For testing handleSuggestion()
 	public ArrayList<Player> getPlayers() {

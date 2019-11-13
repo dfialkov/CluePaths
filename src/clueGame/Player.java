@@ -2,6 +2,7 @@
 package clueGame;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections; 
@@ -17,19 +18,22 @@ public abstract class Player {
 	private ArrayList<Card> seenCards = new ArrayList<Card>();
 	private ArrayList<Card> unseenCards = new ArrayList<Card>();
 	ArrayList<Card> hand;
+	
 	public Player(String playerName) {
 		this.playerName = playerName;
 	}
 	
 	public Color convertColor(String strColor) {
 		 Color color;
+		 
 		 try {
-		 // We can use reflection to convert the string to a color
-		 Field field = Class.forName("java.awt.Color").getField(strColor.trim());
-		 color = (Color)field.get(null);
+			 // We can use reflection to convert the string to a color
+			 Field field = Class.forName("java.awt.Color").getField(strColor.trim());
+			 color = (Color)field.get(null);
 		 } catch (Exception e) {
-		 color = null; // Not defined
+			 color = null;
 		 }
+		 
 		 return color;
 		}
 	
@@ -86,6 +90,13 @@ public abstract class Player {
 			}
 		}
 		return null;
+	}
+	
+	public void draw(Graphics g) {
+		
+		g.setColor(color);
+		g.fillOval(col*25, row*25, 25, 25);
+		
 	}
 	
 	

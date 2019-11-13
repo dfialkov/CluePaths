@@ -22,9 +22,15 @@ public class Card {
 		case "person":
 			type = CardType.PERSON;
 			break;
-		default:
+		case "room":
+			type = CardType.ROOM;
 			break;
 		}
+	}
+
+	public Card(String name, CardType cardType) {
+		cardName = name;
+		type = cardType;
 	}
 
 	public String getCardName() {

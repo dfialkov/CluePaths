@@ -1,13 +1,13 @@
 ﻿C,C,C,CR,W,W,L,L,L,L,L,L,L,L,W,W,G,G,G,G
 C,C,C,C,W,W,LL,L,L,L,L,L,L,LR,W,W,G,G,G,G
-C,C,C,C,W,W,L,L,L,L,L,L,L,L,W,W,G,G,G,G
+C,CN,C,C,W,W,L,L,L,LN,L,L,L,L,W,W,G,GN,G,G
 C,C,C,C,W,W,L,L,W,W,W,W,L,L,W,W,G,G,G,G
 C,C,C,C,W,W,L,L,W,W,W,W,L,L,W,W,W,W,GL,G
 W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,G,G
 W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,G,G
 Y,Y,Y,Y,Y,W,W,W,W,W,W,W,W,W,O,O,O,W,W,W
 Y,Y,Y,Y,Y,Y,W,W,X,X,X,X,W,W,O,O,O,W,W,W
-Y,Y,Y,Y,Y,YR,W,W,X,X,X,X,W,W,O,O,O,W,W,W
+Y,YN,Y,Y,Y,YR,W,W,X,X,X,X,W,W,O,ON,O,W,W,W
 Y,Y,Y,Y,Y,Y,W,W,X,X,X,X,W,W,O,O,O,W,W,W
 Y,Y,Y,Y,Y,W,W,W,X,X,X,X,W,W,O,OD,O,W,W,W
 W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,B,B
@@ -15,6 +15,6 @@ W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,B,B
 W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,B,B
 M,M,M,M,W,W,K,K,KR,W,W,DL,D,D,W,W,B,BU,B,B
 M,M,M,M,W,K,K,K,K,W,W,D,D,D,D,W,B,B,B,B
-M,M,M,M,W,K,K,K,K,W,W,D,D,D,D,W,B,B,B,B
+M,MN,M,M,W,K,KN,K,K,W,W,DN,D,D,D,W,B,BN,B,B
 M,M,MR,W,W,K,K,K,K,W,W,D,D,D,D,W,B,B,B,B
 M,M,M,W,W,K,K,K,K,W,W,D,D,D,D,W,B,B,B,B
