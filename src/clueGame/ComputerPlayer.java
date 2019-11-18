@@ -44,7 +44,7 @@ public BoardCell pickLocation(Set<BoardCell> targets) {
 		}
 		i++;
 	}
-		
+	
 	return null;
 }
 public void visit(char roomInitial) {

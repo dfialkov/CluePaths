@@ -6,6 +6,8 @@ package clueGame;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -17,7 +19,9 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import java.util.Queue;
 import java.util.Random;
@@ -25,7 +29,7 @@ import java.util.Random;
 
 
 
-public class Board extends JPanel{
+public class Board extends JPanel implements MouseListener{
 	// instance variables
 	public static final int MAX_BOARD_SIZE = 50;
 	private BoardCell[][] board;
@@ -43,8 +47,11 @@ public class Board extends JPanel{
 	private String cardConfigFile;
 	private HashSet visited;
 	Solution answer;
-
-
+	int nextPlayerIndex = 0;
+	private JTextField currPlayerField;
+	private JTextField rollField;
+	private boolean waitingForHuman = false;
+	private HumanPlayer currHuman;
 	// variable used for singleton pattern
 	private static Board theInstance = new Board();
 
@@ -73,24 +80,25 @@ public class Board extends JPanel{
 		createPlayers();
 		answer = new Solution();
 		deal();
+		addMouseListener(this);
 	}
-	
+
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-	
+
 		for(BoardCell[] cellRow: board ) {
 			for(BoardCell cell: cellRow) {
 				cell.draw(g);
 			}
 		}
-		
+
 		for(Player person: players) {
 			person.draw(g);
 		}
-		
+
 	}
-	
+
 	public void deal() {
 		for(Player currPlayer : players) {
 			for (Card currCard : deck) {
@@ -376,7 +384,7 @@ public class Board extends JPanel{
 
 		}
 	}
-	
+
 	public Card handleSuggestion(Solution suggestion, String accuserName) {
 		for(Player currPlayer : players) {
 			if(currPlayer.getName() != accuserName) {
@@ -401,8 +409,90 @@ public class Board extends JPanel{
 		}
 
 	}
+	public void attemptHumanMove(int mouseX, int mouseY) {
+		if(waitingForHuman == false) {
+			JOptionPane.showMessageDialog(Board.getInstance(), "You may not move outside of your turn", "Rule warning", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+		//Go through all the cells in hopes of finding the cell the click landed in
+		for(BoardCell[] row : board) {
+			for(BoardCell candidate : row) {
+				BoardCell cellTest = candidate.containsClick(mouseX, mouseY);
+				//Verify target validify within rules
+				if(cellTest != null  && targets.contains(candidate)) {
+					//Move player
+					currHuman.setCol(cellTest.getCol());
+					currHuman.setRow(cellTest.getRow());
+					//Hand game state to computers
+					waitingForHuman = false;
+					currHuman = null;
+					for(BoardCell[] currRow : board) {
+						for(BoardCell currCell : currRow) {
+							currCell.resetColor();
+						}
+					}
+					repaint();
+					return;
+				}
+			}
+		}
+		JOptionPane.showMessageDialog(Board.getInstance(), "Invalid movement location", "Rule warning", JOptionPane.INFORMATION_MESSAGE);
+	}
 
+	//This is what the Next Player button calls.
+	//Does a number of things depending on whose turn it is.
+	public void nextPlayer() {
+		//Don't proceed without human input on their turn. 
+		if(waitingForHuman) {
+			JOptionPane.showMessageDialog(Board.getInstance(), "You must make your move before passing your turn", "Rule warning", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+		for(BoardCell[] row : board) {
+			for(BoardCell candidate : row) {
+				candidate.resetColor();
+			}
+		}
+		Player player = getNextPlayer();
+		//Name the next player
+		currPlayerField.setText(player.getName());
+		//Roll the dice for movement
+		Random rand = new Random();
+		//Add 2 to add the bounds that dice naturally have. 
+		int diceResult = rand.nextInt(6) + rand.nextInt(6) + 2;
+		//Display roll
+		rollField.setText(Integer.toString(diceResult));
+		//Humans and computers both need targets
+		calcTargets(player.getRow(), player.getCol(), diceResult);
+		
+		//Player is a human
+		if(player.getHumanName() != null) {
+			currHuman = (HumanPlayer) player;
+			waitingForHuman = true;
+			highlightTargets();
 
+		}
+		
+		//Player is a computer
+		else{
+			//Automatically take turn. This should be updating as soon as the turn starts, in human terms.
+			((ComputerPlayer) player).pickLocation(targets);
+		}
+		repaint();
+	}
+	//show the player their options for movement.
+	//Changes the board's cell info without changing the actual GUI info. Repaint elsewhere.
+	public void highlightTargets(){
+		for(BoardCell target : targets) {
+			for(BoardCell[] row : board) {
+				for(BoardCell candidate : row) {
+					if(candidate == target) {
+						candidate.highlight();
+					}
+				}
+			}
+		}
+
+	}
 	//Setters and getters. Self-explanatory
 	public BoardCell getCellAt(int row, int col) {
 		return board[row][col];
@@ -415,7 +505,7 @@ public class Board extends JPanel{
 	public int getNumColumns() {
 		return numColumns;
 	}
-	
+	//This is how humans are identified.
 	public String getHumanPlayerName() {
 		for(Player player : players) {
 			if(player.getHumanName() != null) {
@@ -448,11 +538,17 @@ public class Board extends JPanel{
 	public ArrayList<Card> getDeck() {
 		return deck;
 	}
-	
+
 	public ArrayList<Card> getCopy() {
 		return  copy;
 	}
-//For testing handleSuggestion()
+	public void setCurrPlayerBox(JTextField box) {
+		currPlayerField = box;
+	}
+	public void setRollBox(JTextField die) {
+		rollField = die;
+	}
+	//For testing handleSuggestion()
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
@@ -467,7 +563,45 @@ public class Board extends JPanel{
 	public void setSolution(String setPerson, String setWeapon, String setRoom) {
 		answer = new Solution(setPerson, setWeapon, setRoom);
 	}
-	
+	public Player getNextPlayer() {
+		Player toReturn = players.get(nextPlayerIndex);
+		nextPlayerIndex++;
+		if(nextPlayerIndex == 6) {
+			nextPlayerIndex = 0;
+		}
+		return toReturn;
+	}
+	//Mouse listener methods. Deliberately left unimplemented. 
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		//Unneeded
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		//Unneeded
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		//Unneeded
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		attemptHumanMove(arg0.getX(), arg0.getY());
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		//Unneeded
+		
+	}
+
 
 
 

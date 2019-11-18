@@ -24,7 +24,7 @@ public abstract class Player {
 	}
 	
 	public Color convertColor(String strColor) {
-		 Color color;
+		 
 		 
 		 try {
 			 // We can use reflection to convert the string to a color

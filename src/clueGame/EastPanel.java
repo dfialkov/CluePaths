@@ -55,7 +55,9 @@ public class EastPanel extends JPanel{
 	 	
 		for(Card card: hand) {
 			if(card.getType() == CardType.PERSON) {
-				panel.add(new JTextField(card.getCardName()));
+				JTextField cardField = new JTextField(card.getCardName());
+				cardField.setEditable(false);
+				panel.add(cardField);
 			}
 		}
 		
@@ -72,7 +74,9 @@ public class EastPanel extends JPanel{
 	 	
 		for(Card card: hand) {
 			if(card.getType() == CardType.ROOM) {
-				panel.add(new JTextField(card.getCardName()));
+				JTextField cardField = new JTextField(card.getCardName());
+				cardField.setEditable(false);
+				panel.add(cardField);
 			}
 		}
 		
@@ -88,7 +92,9 @@ public class EastPanel extends JPanel{
 	 	
 		for(Card card: hand) {
 			if(card.getType() == CardType.WEAPON) {
-				panel.add(new JTextField(card.getCardName()));
+				JTextField cardField = new JTextField(card.getCardName());
+				cardField.setEditable(false);
+				panel.add(cardField);
 			}
 		}
 		

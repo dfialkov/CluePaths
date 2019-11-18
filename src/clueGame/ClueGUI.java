@@ -31,7 +31,8 @@ public class ClueGUI extends JFrame{
 		//Add South Panel
 		SouthPanel south = new SouthPanel();
 		add(south,BorderLayout.SOUTH);
-		
+		board.getInstance().setCurrPlayerBox(south.getNameBox());
+		board.getInstance().setRollBox(south.getDieBox());
 		//Add East Panel
 		EastPanel east = new EastPanel();
 		add(east,BorderLayout.EAST);
@@ -45,8 +46,8 @@ public class ClueGUI extends JFrame{
 		notes = new NotesDialog();
 		
 		//Create starting splash screen.
-		JOptionPane.showMessageDialog(south, "You are playing as " + board.getHumanPlayerName() + ", press Next Player to begin play.", "Welcom to Clue!", JOptionPane.INFORMATION_MESSAGE);
-			
+		JOptionPane.showMessageDialog(south, "You are playing as " + board.getHumanPlayerName() + ", press Next Player to begin play.", "Welcome to Clue!", JOptionPane.INFORMATION_MESSAGE);
+		
 	}	
 	
 	private JMenu createFileMenu() {
@@ -83,7 +84,8 @@ public class ClueGUI extends JFrame{
 		item.addActionListener(new MenuItemListener());
 		return item;
 	}
-
+	
+	
 	public static void main(String[] args) throws BadConfigFormatException {
 		// Create the GUI
 		ClueGUI gui = new ClueGUI();

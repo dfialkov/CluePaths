@@ -1,3 +1,33 @@
+commit afd370d454da883e12d61c70e21e21546bc285bc
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Wed Nov 13 15:57:14 2019 -0700
+
+    Completed startup splash screen
+
+commit 63142b6ad3daa338ee4b29f8d09b4fc3627ed8e7
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Wed Nov 13 15:43:09 2019 -0700
+
+    Fixed comments mentioned in last commit. No functional changes.
+
+commit bcd32bf09ffcff0cb404f4ab660bce8e03a8e658
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Wed Nov 13 15:41:51 2019 -0700
+
+    Clarified Darian's contribution to C22A. See EastPanel comments.
+
+commit 79ee0fe4bd85a6bb5574546d6766a2d502d97186
+Author: Darian Dickerson <ddickers@mymail.mines.edu>
+Date:   Wed Nov 13 13:24:04 2019 -0700
+
+    Clue Board GUI
+
+commit 1c60b5f7c9c5cd8c56fb8d5abf6f4fd582f2db1f
+Author: dfialkov <dfialkov@mymail.mines.edu>
+Date:   Wed Nov 6 08:54:21 2019 -0700
+
+    Completed Clue GUI
+
 commit 21e86b7aadc1d3e1df783de7feabb6daf02a6b00
 Author: dfialkov <dfialkov@mymail.mines.edu>
 Date:   Mon Nov 4 19:47:28 2019 -0700

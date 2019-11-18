@@ -2,6 +2,8 @@ package clueGame;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,8 +15,8 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 public class SouthPanel extends JPanel {
-	private JTextField name;
-
+	private JTextField currPlayer;
+	private JTextField die;
 	public SouthPanel()
 	{
 		// Create a layout with 2 rows 3 columns
@@ -47,7 +49,9 @@ public class SouthPanel extends JPanel {
 		 	// Use a grid layout, 1 row, 2 elements (label, text)
 			panel.setLayout(new GridLayout(2, 1));
 		 	JLabel nameLabel = new JLabel("Whose Turn?");
-			name = new JTextField();
+			JTextField name = new JTextField();
+			name.setEditable(false);
+			currPlayer = name;
 			panel.add(nameLabel);
 			panel.add(name);
 //			panel.setBorder(new TitledBorder (new EtchedBorder(), "Who are you?"));
@@ -56,10 +60,20 @@ public class SouthPanel extends JPanel {
 	private JPanel createNextPlayerPanel() {
 
 		JPanel panel = new JPanel();
-		JButton accusation = new JButton("Next Player");
-		panel.add(accusation, BorderLayout.CENTER);
+		JButton nextPlayerButton = new JButton("Next Player");
+		nextPlayerButton.addActionListener(new NextPlayerListener());
+		panel.add(nextPlayerButton, BorderLayout.CENTER);
 		return panel;
 	
+	}
+	private class NextPlayerListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			Board.getInstance().nextPlayer();
+			
+		}
+		
 	}
 	private JPanel createAccusationPanel(){
 		JPanel panel = new JPanel();
@@ -72,10 +86,11 @@ public class SouthPanel extends JPanel {
 		 	JPanel panel = new JPanel();
 		 	// Use a grid layout, 1 row, 2 elements (label, text)
 			panel.setLayout(new GridLayout(1,2));
-		 	JLabel nameLabel = new JLabel("Roll");
-			name = new JTextField(2);
-			panel.add(nameLabel);
-			panel.add(name);
+		 	JLabel rollLabel = new JLabel("Roll");
+			die = new JTextField(2);
+			die.setEditable(false);
+			panel.add(rollLabel);
+			panel.add(die);
 			panel.setBorder(new TitledBorder (new EtchedBorder(), "Die"));
 			return panel;
 	}
@@ -84,7 +99,7 @@ public class SouthPanel extends JPanel {
 		 	// Use a grid layout, 1 row, 2 elements (label, text)
 			panel.setLayout(new GridLayout(1,2));
 		 	JLabel nameLabel = new JLabel("Guess");
-			name = new JTextField(2);
+			JTextField name = new JTextField(2);
 			panel.add(nameLabel);
 			panel.add(name);
 			panel.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
@@ -96,15 +111,21 @@ public class SouthPanel extends JPanel {
 		 	// Use a grid layout, 1 row, 2 elements (label, text)
 			panel.setLayout(new GridLayout(1,2));
 		 	JLabel nameLabel = new JLabel("Guess Result");
-			name = new JTextField(2);
+			JTextField name = new JTextField(2);
 			panel.add(nameLabel);
 			panel.add(name);
+			name.setEditable(false);
 			panel.setBorder(new TitledBorder (new EtchedBorder(), "Response"));
 			return panel;
 		 
 	}
 	 
-	
+	public JTextField getDieBox() {
+		return die;
+	}
+	public JTextField getNameBox() {
+		return currPlayer;
+	}
 	//Not main
 	/* 
 	public static void main(String[] args) {
